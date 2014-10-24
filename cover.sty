@@ -1,0 +1,34 @@
+\NeedsTeXFormat{LaTeX2e}\ProvidesPackage{cover}
+
+\newcommand{\makecoversheet}{
+\setcounter{page}{0}\clearpage\thispagestyle{empty}
+\begin{center}
+\Large\textbf{DEADLINE: \deadlines}
+\end{center}
+
+\begin{center}
+\large\textbf{\@title}\\\@author\\\@date
+\end{center}
+
+\begin{flushleft}
+\textbf{Research Contribution:}\\\contribution
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Status:}\\\status
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Venue and Author Guidelines}\\
+\end{flushleft}
+
+\begin{itemize} \itemsep-5pt
+\item VENUE: \venue\\
+\item URL: \web\\
+\item Page Limit: \pglim\\
+\end{itemize}
+}
+\endinput
+
+%\begingroup
+%\endgroup
