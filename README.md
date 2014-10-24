@@ -1,4 +1,4 @@
-LetexTemplate
+LatexTemplate
 =============
 
 Latex Templates
