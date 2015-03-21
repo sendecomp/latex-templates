@@ -1,0 +1,98 @@
+\usepackage[english] {babel}
+
+\usepackage{amsmath, amsfonts, graphicx}
+\usepackage{bibunits, tikz}
+\usetheme{mstbeam}
+\setbeamersize{text margin left=1em, text margin right=1em}
+
+
+\title[Short Title]{Full Title of the Presentation}
+\subtitle{Sub Title}
+\author[Bruce Wayne]{Mark Woodard}
+\date{\today}
+\institute{Missouri University of Science and Technology}
+
+\begin{document}
+\maketitle
+
+\section{Section}
+\begin{frame}{Overview}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}{Slide Title}
+  Enumerated List~\cite{ipsum}\pause
+  \begin{enumerate}
+  \item Level 1
+    \begin{enumerate}
+    \item Level 2
+    \item ...
+    \end{enumerate}\pause
+  \item ...
+    \begin{enumerate}
+    \item ...
+    \item ...
+    \end{enumerate}
+  \end{enumerate}
+\end{frame}
+
+\section{Another Section}
+\subsection{SubSection}
+\begin{frame}{Slide Title}
+  Itemized Lists~\cite{lorem}
+  \begin{itemize}
+  \item Item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Slide Title}
+\begin{exampleblock}
+{Theorem}
+Definition here
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Example of columns 1}
+ \begin{columns}[c]
+ \column{.5\textwidth}
+  Contents of the first column
+ \column{.5\textwidth}
+  Contents split \\ into two lines
+ \end{columns}
+\end{frame}
+ 
+\begin{frame}{Example of columns 2}
+ \begin{columns}[T]
+  \begin{column}[T]{5cm}
+   Contents of first column \\ split into two lines
+  \end{column}
+  \begin{column}[T]{5cm}
+   Contents of second column \\ split into two lines
+  \end{column}
+ \end{columns}
+\end{frame}
+
+\section{And Another Section}
+
+\begin{frame}{Blocks}
+ \begin{block}{This is a Block}
+   This is important information
+ \end{block}
+
+ \begin{alertblock}{This is an Alert block}
+   This is an important alert
+ \end{alertblock}
+  
+ \begin{exampleblock}{This is an Example block}
+  This is an example 
+ \end{exampleblock}
+\end{frame}
+
+\begin{frame}{References}
+
+\bibliographystyle{plain}
+\bibliography{demo}
+
+\end{frame}
+
+\end{document}

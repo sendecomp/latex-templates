@@ -1,0 +1,18 @@
+\ProvidesPackage{beamerthememstbeam}[2015/03/20]
+\RequirePackage{pgfkeys, tikz}
+
+\pgfkeys{/pb/.is family}
+\providecommand\mstbeamoptions{\pgfqkeys{/pb}}
+\usecolortheme{mstbeam}
+\useinnertheme{mstbeam}
+\usefonttheme{mstbeam}
+\useoutertheme{mstbeam}
+
+\setbeamertemplate{navigation symbols}{}
+
+\let\@NX\noexpand
+\let\@EA\expandafter
+
+\mode<handout>{
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{4 on 1}}

@@ -1,0 +1,149 @@
+\ProvidesPackage{beamerouterthememstbeam}[2015/03/20]
+
+\RequirePackage{calc, pgfkeys, tikz}
+\usetikzlibrary[arrows]
+
+\pgfkeys{/pb/.is family}
+\pgfqkeys{/pb}{
+  .headline/.store in=\pb@headline,
+  headline/.is choice,
+  headline/none/.style={/pb/.headline=none},
+  headline/sections/.style={/pb/.headline=sections},
+  headimage/.store in=\pb@headimage,
+  titleimage/.store in=\pb@titleimage,
+  confimage/.store in=\pb@confimage}
+\providecommand\mstbeamoptions{\pgfqkeys{/pb}}
+
+\AtBeginDocument{
+  \pgfdeclareimage[width=0.20\textwidth, interpolate=true] {titleimage}{\pb@headimage}
+  \pgfdeclareimage[width=0.20\textwidth, interpolate=true] {confimage}{\pb@confimage}
+  \pgfdeclareimage[width=0.10\textwidth, interpolate=true] {headimage}{\pb@titleimage}
+}
+
+\mstbeamoptions{
+  headline=none,
+  headimage=img/mst-lt.pdf,
+  titleimage=img/mst-lt.pdf,
+  confimage=img/conf.pdf
+  }
+
+\mode<presentation>
+
+%Progressbar
+\newdimen\pb@frame
+\newdimen\pb@bar
+\newdimen\pb@step
+\newdimen\pb@margin
+\pb@margin=2mm
+
+\newcommand\setlen[2]{#1\dimexpr#2\relax}
+\newcommand\gsetlen[2]{\global#1\dimexpr#2\relax}
+
+\def\insertprogbar{
+  \ifnum\insertframenumber=1
+    \setbox\@tempboxa=\hbox{
+      \usebeamerfont{section in head/foot}
+      \usebeamercolor[fg]{section in head/foot}
+      \inserttotalframenumber~/~\inserttotalframenumber}
+    \@tempdima=\wd\@tempboxa
+    \gsetlen\pb@frame \@tempdima
+    \gsetlen\pb@bar   {\paperwidth-\@tempdima-3\pb@margin}
+    \gsetlen\pb@step  {\pb@bar/(\inserttotalframenumber-2)}
+  \else
+    \setlen\@tempdima {\pb@step*(\insertframenumber-2)}
+    \begin{tikzpicture}[thin, inner sep=0pt]
+      \usebeamerfont{section in head/foot}
+      \usebeamercolor{section in head/foot}
+      \path [use as bounding box] (0,-1mm) rectangle ++(\paperwidth,0);
+      \node [anchor=east, text=fg] at (\paperwidth-\pb@margin,2.1mm)
+        {\hfill\insertframenumber~/~\inserttotalframenumber};
+      \node [anchor=south east, text=fg]
+        at (\paperwidth-2\pb@margin-\pb@frame-0.4mm,2.6mm)
+        {\insertshorttitle};
+      \path [draw, color=fg!30!bg, <->, >=serif cm]
+        (\pb@margin,2.1mm) -- ++(\pb@bar,0);
+      \node [anchor=north, text=fg!30!bg]
+        at (\@tempdima+\pb@margin,2.1mm) {$\blacktriangle$};
+    \end{tikzpicture}
+  \fi}
+
+%head/footline
+\defbeamertemplate*{section in head/foot}{mstbeam}{
+  \setbox\@tempboxa\hbox{\strut\insertsectionhead}
+  \setdim\@tempdima{\wd\@tempboxa+4pt}
+  \setdim\@tempdimb{\ht\@tempboxa+4pt}
+  \begin{tikzpicture}
+    \usebeamercolor{section in head/foot}
+    \path [clip] (-1pt,-1pt) rectangle (\@tempdima+1pt, \@tempdimb+1pt);
+    \path [draw=fg, thin, rounded corners=3pt] (0,0) rectangle (\@tempdima, \@tempdimb);
+    \node [anchor=text, text=fg] at (2pt,2pt) {\strut\insertsectionhead};
+  \end{tikzpicture}}
+
+\setbeamercolor{section in head/foot shaded}{fg=gray!80}
+\defbeamertemplate*{section in head/foot shaded}{mstbeam}{
+  \setbox\@tempboxa\hbox{\strut\insertsectionhead}
+  \setdim\@tempdima{\wd\@tempboxa+4pt}
+  \setdim\@tempdimb{\ht\@tempboxa+4pt}
+  \begin{tikzpicture}
+    \usebeamercolor{section in head/foot shaded}
+    \path [clip] (-1pt,-1pt) rectangle (\@tempdima+1pt, \@tempdimb+1pt);
+    \path [rounded corners=3pt] (0,0) rectangle (\@tempdima, \@tempdimb);
+    \node [anchor=text, text=fg] at (2pt,2pt) {\strut\insertsectionhead};
+  \end{tikzpicture}}
+
+\def\const@none{none}
+\def\const@sections{sections}
+
+\defbeamertemplate*{headline}{mstbeam}{
+  \leavevmode
+  \begin{beamercolorbox} [ignorestructure.bg=true, wd=\paperwidth, ht=4ex, dp=1.125ex]{structure.fg}
+    \ifnum\insertframenumber=1
+    \else\ifx\pb@headline\const@sections
+      \insertsectionnavigationhorizontal{\paperwidth}{}{}
+    \fi\fi
+  \end{beamercolorbox}}
+
+\defbeamertemplate*{footline}{mstbeam}{\insertprogbar}
+
+%Titlepage
+\newcommand\insertmaybe[1]{
+  \expandafter\ifx\csname insert#1\endcsname\@empty\else
+    \endgraf
+    {\usebeamerfont{#1}
+     \usebeamercolor[fg]{#1}
+     \csname insert#1\endcsname}
+  \fi}
+
+\defbeamertemplate*{title page}{mstbeam}{
+    \begin{center}
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
+      \insertmaybe{subtitle}
+      \vskip\baselineskip\hrule\vskip\baselineskip
+      \insertmaybe{author}
+      \insertmaybe{date}
+      \insertmaybe{institute}
+      \insertlogo
+    \end{center}
+    \pgfuseimage{titleimage}\hspace{.6\textwidth}\pgfuseimage{confimage}
+}
+
+%Background
+\defbeamertemplate*{background canvas}{mstbeam}{\pgfuseshading{background shading}}
+\AtBeginDocument{
+  \begingroup
+    \usebeamercolor{palette secondary}
+    \usebeamercolor{normal text}
+    \pgfdeclareverticalshading{background shading}\paperwidth{
+      color(0in)=(palette secondary.bg);
+      color(0.05\paperheight)=(palette secondary.bg);
+      color(0.10\paperheight)=(normal text.bg);
+      color(0.8\paperheight)=(normal text.bg);
+      color(0.85\paperheight)=(palette secondary.bg);
+      color(\paperheight)=(palette secondary.bg)}
+  \endgroup}
+
+\mode<handout>{
+  \setbeamertemplate{background canvas}{}
+  \setbeamertemplate{headline}{\vskip2mm}
+  \setbeamertemplate{footline}{}%
+  \setbeamertemplate{title page}[default]}

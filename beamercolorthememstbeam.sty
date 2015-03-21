@@ -1,0 +1,33 @@
+\ProvidesPackage{beamercolorthememstbeam}[2015/03/20]
+
+\definecolor{pb@gray}  {rgb} {0.92,0.92,0.92}
+\definecolor{pb@green} {rgb} {0.10,0.34,0.02}
+\definecolor{pb@red}   {rgb} {0.30,0.10,0.02}
+
+
+\definecolor{pb@darkgreenone} {rgb} {0.01,0.05,0.15}
+\definecolor{pb@darkgreentwo} {rgb} {0.25,0.45,0.5}
+
+\setbeamercolor{background canvas}{parent=palette primary}
+
+\setbeamercolor{palette primary}    {fg=pb@green, bg=pb@gray}
+\setbeamercolor{palette secondary}  {fg=white!90!pb@green, bg=pb@green}
+\setbeamercolor{palette tertiary}   {fg=pb@green, bg=pb@gray}
+\setbeamercolor{palette quaternary} {fg=pb@green, bg=pb@gray}
+
+\setbeamercolor{structure}            {fg=pb@green, bg=white}
+\setbeamercolor{title}                {parent=structure}
+\setbeamercolor{subtitle}             {parent=title}
+\setbeamercolor{frametitle}           {fg=white, bg=pb@green}
+\setbeamercolor{section in head/foot} {parent=palette secondary}
+
+\setbeamercolor{alerted text}{fg=black!40!red}
+\setbeamercolor{example text}{fg=black!40!green}
+
+\setbeamercolor{block title}         {fg=structure.fg,    bg=pb@gray}
+\setbeamercolor{block title alerted} {fg=alerted text.fg, bg=alerted text.fg!10!bg}
+\setbeamercolor{block title example} {fg=example text.fg, bg=example text.fg!10!bg}
+
+\setbeamercolor{block body}         {fg=normal text.fg, bg=pb@gray}
+\setbeamercolor{block body alerted} {fg=normal text.fg, bg=alerted text.fg!10!bg}
+\setbeamercolor{block body example} {fg=normal text.fg, bg=example text.fg!10!bg}
