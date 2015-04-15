@@ -1,0 +1,115 @@
+\ProvidesPackage{beamerinnerthememstbeam}[2015/03/20]
+
+% Beamer theme for Missouri S&T (Unofficial)
+% Based on the LaTeX-Beamer package 
+% Copyright 2007 by Till Tantau
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+% This fork was customized for Missouri S&T Theme
+
+\RequirePackage{pgfkeys, tikz}
+\usetikzlibrary[fadings]
+\pgfkeys{/handlers/.append to/.code=
+  \pgfkeysdef{\pgfkeyscurrentpath}{
+    \expandafter\@temptokena\expandafter{#1,##1}
+    \expandafter\edef\csname\expandafter\@gobble\string#1\endcsname{
+      \the\@temptokena}}}
+
+\pgfkeys{/pb/.is family}
+
+\pgfqkeys{/pb}{
+  .frametitle/.store in=\pb@frametitle,
+  frametitle/rulelength/.store in=\pb@frametitlerulelength,
+  frametitle/rulewidth/.store in=\pb@frametitlerulewidth,
+  blocks/width/.store in=\pb@blockswidth,
+  blocks/rule/.append to=\pb@blocksrule,
+  blocks/frame/.append to=\pb@blocksframe}
+
+\providecommand\mstbeamoptions{\pgfqkeys{/pb}}
+
+\def\pb@blocksrule{}
+\def\pb@blocksframe{}
+
+% default values
+\mstbeamoptions{
+  frametitle/rulelength=0.7\linewidth,
+  frametitle/rulewidth=0.5pt,
+  blocks/width=0.95\textwidth,
+  blocks/rule={draw=fg!20!bg},
+  blocks/frame={draw=fg!20!bg, fill=bg, rounded corners=2pt}}
+
+\mode<presentation>
+
+
+%Frametitle
+\def\pb@separator{--}
+
+\defbeamertemplate*{frametitle}{mstbeam}{
+  \vskip-2ex
+  \parbox[c]{0.15\textwidth}{\pgfuseimage{headimage}}%
+  \parbox[c]{0.85\textwidth}{%
+    \ifx\insertsection\@empty\else
+      \usebeamerfont{section in frametitle}%
+      \usebeamercolor[fg]{section in frametitle}%
+      \insertsection\fi
+    \ifx\insertsubsection\@empty\else
+      \space\pb@separator\space
+      \usebeamerfont{subsection in frametitle}%
+      \usebeamercolor[fg]{subsection in frametitle}%
+      \insertsubsection\fi
+    \strut\\[-2ex]
+      \usebeamerfont{frametitle}%
+      \usebeamercolor[fg]{frametitle}%
+      \rule{\pb@frametitlerulelength}{\pb@frametitlerulewidth}\endgraf
+      \strut\insertframetitle}
+      }
+
+  % items
+  \setbeamertemplate{itemize items}[circle]
+  \setbeamertemplate{enumerate items}[default]
+  \setbeamertemplate{section in toc}{
+    \usebeamerfont{section text in toc}
+    \usebeamercolor[fg]{section text in toc}
+    \inserttocsectionnumber. \inserttocsection}
+  \setbeamertemplate{subsection in toc}{
+    \usebeamerfont{subsection text in toc}
+    \usebeamercolor[fg]{subsection text in toc}
+    \inserttocsectionnumber.\inserttocsubsectionnumber.
+    \inserttocsubsection}
+
+\mode<handout>{
+  \setbeamerfont{frametitle}{series=\bfseries}
+  \setbeamercolor{frametitle}{fg=structure.fg, bg=white}
+  \setbeamertemplate{frametitle}{
+    \usebeamerfont{frametitle}
+    \usebeamercolor[fg]{frametitle}
+    \insertframetitle}
+  % blocks
+  \setbeamercolor{block title}{bg=normal text.bg}
+  \setbeamercolor{block body}{bg=normal text.bg}
+  \setbeamercolor{bibliography structure}{bg=normal text.bg}
+  \setbeamercolor{block title example}{bg=normal text.bg}
+  \setbeamercolor{block body example}{bg=normal text.bg}
+  \setbeamercolor{block title alerted}{bg=normal text.bg}
+  \setbeamercolor{block body alerted}{bg=normal text.bg}
+  \setbeamertemplate{block begin}[default]
+  \setbeamertemplate{block end}[default]
+  \setbeamertemplate{block example begin}[default]
+  \setbeamertemplate{block example end}[default]
+  \setbeamertemplate{block alerted begin}[default]
+  \setbeamertemplate{block alerted end}[default]
+  \addtobeamertemplate{block begin}{}{
+    \addtobeamertemplate{itemize/enumerate body begin}{\kern-0.85\topsep}{}
+    \addtobeamertemplate{itemize/enumerate body end}{}{\kern-\dimexpr0.85\topsep+0.25\topskip\relax}}
+  % items
+  \setbeamertemplate{itemize items}[circle]
+  \setbeamertemplate{enumerate items}[default]
+  \setbeamertemplate{section in toc}{
+    \usebeamerfont{section text in toc}
+    \usebeamercolor[fg]{section text in toc}
+    \inserttocsectionnumber. \inserttocsection}
+  \setbeamertemplate{subsection in toc}{
+    \usebeamerfont{subsection text in toc}
+    \usebeamercolor[fg]{subsection text in toc}
+    \inserttocsectionnumber.\inserttocsubsectionnumber.
+    \inserttocsubsection}}
