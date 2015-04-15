@@ -1,0 +1,26 @@
+\ProvidesPackage{beamerthememstbeam}[2015/03/20]
+
+% Beamer theme for Missouri S&T (Unofficial)
+% Based on the LaTeX-Beamer package 
+% Copyright 2007 by Till Tantau
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+% This fork was customized for Missouri S&T Theme
+
+\RequirePackage{pgfkeys, tikz}
+
+\pgfkeys{/pb/.is family}
+\providecommand\mstbeamoptions{\pgfqkeys{/pb}}
+\usecolortheme{mstbeam}
+\useinnertheme{mstbeam}
+\usefonttheme{mstbeam}
+\useoutertheme{mstbeam}
+
+\setbeamertemplate{navigation symbols}{}
+
+\let\@NX\noexpand
+\let\@EA\expandafter
+
+\mode<handout>{
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{4 on 1}}

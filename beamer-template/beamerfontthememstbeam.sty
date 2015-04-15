@@ -1,0 +1,42 @@
+\ProvidesPackage{beamerfontthememstbeam}[2015/03/20]
+
+% Beamer theme for Missouri S&T (Unofficial)
+% Based on the LaTeX-Beamer package 
+% Copyright 2007 by Till Tantau
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+% This fork was customized for Missouri S&T Theme
+
+% titlepage
+\setbeamerfont{title}     {parent=structure, size=\LARGE, series=\bfseries}
+\setbeamerfont{subtitle}  {parent=title, size=\Large}
+\setbeamerfont{author}    {parent=title, size=\Large}
+\setbeamerfont{institute} {parent=structure, size=\normalsize, series=\mdseries}
+\setbeamerfont{date}      {parent=institute}
+
+\setbeamerfont{frametitle}           {parent=structure, size=\Large, series=\bfseries}
+\setbeamerfont{section in head/foot} {size=\small, series=\bfseries}
+
+% items
+\setbeamerfont{itemize/enumerate body}       {size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}    {size=\small}
+\setbeamerfont{itemize/enumerate subsubbody} {size=\footnotesize}
+\setbeamerfont{enumerate item}               {size=\normalsize, series=\bfseries}
+\setbeamerfont{enumerate subitem}            {size=\small, series=\bfseries}
+\setbeamerfont{enumerate subsubitem}         {size=\footnotesize, series=\bfseries}
+
+% sections
+\setbeamerfont{section in toc}         {parent=structure, size=\scriptsize, series=\bfseries}
+\setbeamerfont{subsection in toc}      {parent=structure, size=\scriptsize, series=\bfseries}
+\setbeamerfont{section text in toc}    {parent=section in toc, size=\normalsize}
+\setbeamerfont{subsection text in toc} {parent=subsection in toc, size=\scriptsize}
+
+% blocks
+\setbeamerfont{block title}{parent={structure, block body}, size=\normalsize, series=\bfseries}
+
+% bibliography
+\setbeamerfont{bibliography entry author}  {size=\scriptsize, series=\bfseries}
+\setbeamerfont{bibliography entry title}   {size=\scriptsize, series=\mdseries}
+\setbeamerfont{bibliography entry journal} {size=\scriptsize, series=\mdseries}
+\setbeamerfont{bibliography entry note}    {size=\scriptsize, series=\mdseries}
+
