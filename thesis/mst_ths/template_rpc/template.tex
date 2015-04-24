@@ -1,0 +1,134 @@
+ % -*- mode: LaTeX -*-
+ % ... preamble ...
+\documentclass[times,12pt,titlepage]{mstthesis}
+\doublespacing
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{\thepage}
+\lfoot{}\cfoot{}\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[nopar]{lipsum}
+
+ % ... uncomment after editing toc, lof, lot ...
+
+ %\nofiles
+
+ % ... end preamble ...
+
+\begin{document}
+
+
+ % ... specify: ms | phd ...
+
+\begin{ThesisTitlePage}{ms}
+
+\author{\MakeUppercase{I. M. Author}}
+
+\thesistitle{\MakeUppercase{The Title of My Work}}
+
+\department{Mechanical Engineering}
+
+ % ... thesis committee ...
+
+\ThesisAdviser{Galileo}
+
+ % If you have a co-advisor, enter the name in the
+ % curly braces below and uncomment.
+ % Otherwise, leave commented out.
+ %\cothadviser{} % If you have 2 thesis advisers
+
+\memberone{Newton}
+\membertwo{Copernicus}
+\memberthree{Laplace}
+\memberfour{Fourier}
+\memberfive{}
+
+ % ... Graduation date.  NOT your submission date! ...
+\graddate{1685}
+
+\end{ThesisTitlePage}
+
+ % ... copyright page - true|false ...
+
+\copyrightyear{1684}
+\ThesisCopyrightPage{false}
+
+ % ... front matter - publication option - ms|phd...
+
+\begin{ThesisPublicationOption}{phd}
+  This thesis (or dissertation) has been prepared in the style
+  utilized by the Journal of Everything Important.  Pages 1-17 will be
+  submitted for publication in that journal.  Appendices A, B and C
+  have been added for purposes normal to thesis/dissertation writing.
+  This thesis or dissertation has been prepared in the form of three
+  papers.
+\end{ThesisPublicationOption}
+
+ % ... front matter - thesis abstract ...
+
+\begin{ThesisAbstract}
+\lipsum[1]
+\end{ThesisAbstract}
+
+ % ... front matter - acknowledgements ...
+
+\begin{ThesisAcknowledgment}
+\lipsum[2]
+\end{ThesisAcknowledgment}
+
+ % ... toc, lof, and lot (list of symbols in respective papers) ...
+\begin{ThesisFrontMatter}
+\tableofcontents
+\listoffigures
+\listoftables
+\end{ThesisFrontMatter}
+
+ % ... introduction chapter ...
+
+\begin{ThesisBody}
+
+\begin{ThesisOnlyChapters}
+\ThesisBodyChapter{Introduction}\input{chapmin}
+\ThesisBodyChapter{Literature Review}\input{chapmin}
+\end{ThesisOnlyChapters}
+
+ % ... thesis publications ...
+
+\begin{ThesisPublications}
+\PaperManuscript{I}{MY FIRST PAPER TITLE}
+\PaperManuscript{II}{MY SECOND PAPER TITLE}
+\PaperManuscript{III}{MY THIRD PAPER TITLE}
+\end{ThesisPublications}
+
+ % ... conclusions chapter ...
+
+\begin{ThesisOnlyChapters}
+\ThesisBodyChapter{My Summary and Conclusions}\input{chapmin}
+\end{ThesisOnlyChapters}
+
+\end{ThesisBody}
+
+ % ... appendix - specify number of appendix chapters ...
+
+\begin{ThesisAppendix}{two}
+\ThesisAppendixChapter{One}\input{chapbib}
+\ThesisAppendixChapter{Two}\input{chapbib}
+\end{ThesisAppendix}
+
+ % ... references - comma separated list of bib files ...
+
+\newpage\bibliographystyle{plainnat}
+\bibliography{add.bib}
+
+ % ... vita ...
+
+\begin{Vita}
+\lipsum[3]
+\end{Vita}
+
+ % ... end document ...
+
+\end{document}

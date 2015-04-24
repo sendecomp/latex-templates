@@ -1,0 +1,102 @@
+ % -*- mode: LaTeX -*-
+ % ... preamble ...
+\documentclass[times,12pt,titlepage]{mstthesis}
+\doublespacing
+\usepackage{threeparttable}
+\usepackage[final]{graphicx}
+\usepackage{psfrag}
+\usepackage[noprefix]{nomencl}
+\makenomenclature
+\renewcommand{\nomgroup}[1]{
+   \ifthenelse{\equal{#1}{A}}{\medskip \item \textbf{Roman}}{}%
+   \ifthenelse{\equal{#1}{G}}{\medskip \item \textbf{Greek}}{}%
+   \ifthenelse{\equal{#1}{S}}{\medskip \item \textbf{Subscripts}}{}%
+}
+\usepackage[nopar]{lipsum} % ... provides dummy text ...
+
+ % ... end preamble ...
+
+\begin{document}
+
+ % ... specify: ms or phd ...
+
+\begin{ThesisTitlePage}{ms}
+
+ % ... title page info ...
+
+\author{\MakeUppercase{I. M. Author}}
+
+\thesistitle{\MakeUppercase{The Title of My Work}}
+
+\department{Mechanical Engineering}
+
+ % ... thesis committee ...
+
+\ThesisAdviser{Galileo}
+
+ % If you have a co-advisor, enter the name in the
+ % curly braces below and uncomment.
+ % Otherwise, leave commented out.
+ %\cothadviser{} % If you have 2 thesis advisers
+
+\memberone{Newton}
+\membertwo{Copernicus}
+\memberthree{Laplace}
+\memberfour{Fourier}
+\memberfive{Prandtl}
+
+ % ... Graduation date - NOT your submission date ...
+\graddate{1685}
+
+\end{ThesisTitlePage}
+ % ... copyright page - true|false ...
+
+\copyrightyear{1684}
+\ThesisCopyrightPage{true}
+
+ % ... front matter - thesis abstract ...
+
+\begin{ThesisAbstract}
+\lipsum[1]
+\end{ThesisAbstract}
+
+ % ... front matter - thesis acknowledgements ...
+
+\begin{ThesisAcknowledgment}
+\lipsum[2]
+\end{ThesisAcknowledgment}
+\begin{ThesisFrontMatter}
+\tableofcontents
+\listoffigures
+\listoftables
+\listofsymbols
+\end{ThesisFrontMatter}
+
+\begin{ThesisBody}
+
+ % ... introduction chapter ...
+\ThesisBodyChapter{Introduction}\input{chapmin}
+
+ % ... conclusions chapter ...
+\ThesisBodyChapter{Conclusions}\input{chapall}
+
+\end{ThesisBody}
+ % ... appendix - specify number of appendix chapters ...
+
+\begin{ThesisAppendix}{two}
+\ThesisAppendixChapter{One}\input{chapbib}
+\ThesisAppendixChapter{Two}\input{chapbib}
+\end{ThesisAppendix}
+
+ % ... references - comma separated list of bib files ...
+
+\newpage\bibliographystyle{plainnat}
+\bibliography{add.bib}
+
+ % ... vita ...
+
+\begin{Vita}
+\lipsum[3]
+\end{Vita}
+
+\end{document}
