@@ -11,6 +11,9 @@
 \RequirePackage{ifthen}
 
 % Specialized memo Commands (To, From, Subject, Logo, Letterhead Address)
+\def\@memotype{\relax}
+\newcommand{\memotype}[1]{\gdef\@memotype{#1}}
+
 \def\@memoto{\relax}
 \newcommand{\memoto}[1]{\gdef\@memoto{#1}}
 
@@ -38,7 +41,8 @@
 \newcommand\makememotitle{
 	{\begin{center}
 	\large\bf
-	MEMORANDUM FOR RECORD
+		\ifthenelse{\equal{\@memotype}{\relax}}{}{\item [{MEMORANDUM}] \@memotype}
+
 	\end{center}}
 	% To, From, Subject Block
 	\begin{description}
