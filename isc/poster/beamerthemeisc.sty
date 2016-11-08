@@ -1,0 +1,148 @@
+%%%%% Author: Koosha Marashi
+%%%%% Last update: Nov. 8, 2016
+%%%%% Copyright: SeNDeComp
+
+%TODO - Automatically align blocks at the bottom
+%TODO - Multiple students and advisors
+
+\ProvidesPackage{beamerthemeisc}
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{mstcolors}
+
+\newlength{\blockwidth}
+
+\mode<presentation>
+
+%---------- Macros for student and advisor ----------%
+\def\student#1{\gdef\@student{#1}}
+\def\@student{\@latex@warning@no@line{No \noexpand\student given}}
+\def\advisor#1{\gdef\@advisor{#1}}
+\def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
+
+%---------- Colors ----------%
+\setbeamercolor{headline}{fg=white,bg=mst_minergreen}
+\setbeamercolor{footline}{fg=red, bg=red}
+\setbeamerfont{footline}{size=\large,series=\bf}
+\setbeamercolor{separation line}{bg=mst_minergreen}
+\setbeamercolor{title in headline}{fg=mst_candlelight}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{author in head/foot}{fg=white, bg=mst_minergreen}
+\setbeamercolor*{normal text}{fg=mst_shuttle_gray, bg=mst_silver!50!white}
+\setbeamercolor*{block body}{fg=black, bg=white}
+\setbeamercolor*{block title}{fg=black,bg=mst_lima}
+\setbeamerfont{block title}{series=\bfseries,size=\large}
+\setbeamercolor{alerted text}{fg=mst_tango}
+\setbeamercolor{structure}{fg=mst_orient}
+\setbeamertemplate{itemize items}{\color{mst_lima}$\blacktriangleright$}
+\setbeamertemplate{navigation symbols}{} % No navigation on a poster
+
+%---------- Small block ----------%
+\newenvironment<>{smallblock}[1]{%
+	\begin{actionenv}#2%
+	\footnotesize\def\insertblocktitle{\centering{{\footnotesize#1}}}%
+	\par%
+	\usebeamertemplate{block begin}}
+	{\par\usebeamertemplate{block end}
+	\end{actionenv}}
+
+%---------- Block ----------%
+\setbeamertemplate{block begin}{
+	\setlength{\blockwidth}{\textwidth+2ex}%
+	\vskip2ex
+	\begin{beamercolorbox}[ht=2.7ex,dp=2.2ex,wd=\blockwidth,center,rounded=false,shadow=false,leftskip=1cm,colsep*=0ex]{block title}%
+		\usebeamerfont*{block title}\centering \insertblocktitle
+	\end{beamercolorbox}\vskip-9pt%
+	{\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5ex}}%
+	\usebeamerfont{block body}%
+	\begin{beamercolorbox}[rounded=false,shadow=false,center,wd=\textwidth,]{block body}%
+		\ifbeamercolorempty[bg]{block body}\vbox{}%
+		\begin{minipage}{0.96\textwidth}\vbox{}%
+		}
+\setbeamertemplate{block end}{
+    \vspace*{2ex}
+	\end{minipage}
+	\end{beamercolorbox}
+	}
+
+%---------- Vertical spaces ----------%
+\setlength{\belowcaptionskip}{2ex} % White space under figures
+\setlength\belowdisplayskip{4ex} % White space under equations
+
+%---------- Headline ----------%
+\setbeamertemplate{headline}{
+	\leavevmode
+	\begin{beamercolorbox}[wd=\paperwidth]{headline}
+		\vspace{2ex}\\
+		\begin{columns}[c]
+            \begin{column}{0.04\paperwidth}\end{column}
+
+            \begin{column}{0.12\paperwidth}
+				\begin{center}
+					\includegraphics[width=0.12\paperwidth,height=0.10\paperheight,keepaspectratio]{img/sandt.pdf}
+				\end{center}
+			\end{column}
+
+			\begin{column}{0.04\paperwidth}\end{column}
+
+			\begin{column}{0.60\paperwidth}
+                \begin{center}
+                  \usebeamercolor{title in headline}{\color{fg}\textbf{\huge{\inserttitle}}\\[5ex]}
+                \end{center}
+                \begin{columns}[t,totalwidth=\textwidth]
+                    \begin{column}{0.48\textwidth}
+                        \centering
+                        {\large\textbf{Student}:~\usebeamercolor{author in headline}{\color{fg}\@student}}
+                    \end{column}
+
+                    \begin{column}{0.04\textwidth}\end{column}
+
+                    \begin{column}{0.48\textwidth}
+                        \centering
+                        {\large\textbf{Co-advisors}:~\usebeamercolor{author in headline}{\color{fg}\@advisor}}
+                    \end{column}
+                \end{columns}
+			\end{column}
+
+            \begin{column}{0.04\paperwidth}\end{column}
+
+            \begin{column}{0.12\paperwidth}
+				\begin{center}
+					\includegraphics[width=0.12\paperwidth,height=0.10\paperheight,keepaspectratio]{img/isc.pdf}
+				\end{center}
+			\end{column}
+
+            \begin{column}{0.04\paperwidth}\end{column}
+		\end{columns}
+		\vspace{2ex}\\
+	\end{beamercolorbox}
+
+ 	\begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+		\rule{0pt}{2pt}
+	\end{beamercolorbox}
+	\vskip-2cm
+	}
+
+%---------- Footline ----------%
+\setbeamertemplate{footline}{
+	\begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+		\rule{0pt}{2pt}
+	\end{beamercolorbox}
+	\leavevmode%
+	\begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
+		\insertdate
+		\hfill
+		\href{http://web.mst.edu/~sendecomp}{www.mst.edu/$\thicksim$sendecomp}
+		\vskip1ex
+	\end{beamercolorbox}
+	\vskip0pt%
+	\begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+		\rule{0pt}{2pt}
+	\end{beamercolorbox}
+	}
+
+%---------- Misc. ----------%
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]{}
+
+\mode<all>
