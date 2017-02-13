@@ -11,3 +11,5 @@ OGS-approved class and template files for theses and dissertations.
 The template_pto and and template_rpc subdirectories contain a fully-functional template which can be used to verify a local LaTeX environment.
 
 The class and template files have been developed in a unix environment and, in my own environment, are compiled with a Makefile.  The Makefiles are included but not necessary, depending upon your OS/environment.
+
+[GitHub Repository for Missouri S&T Thesis Class and Templates](https://github.com/kohoman/mst_ths)
